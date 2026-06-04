@@ -59,6 +59,12 @@ public class ItemManager : MonoBehaviour
     /// </summary>
     private void OnSpotFound(int spotID)
     {
+        // Phát âm thanh đúng
+        if (Ply_SoundManager.Instance != null)
+        {
+            Ply_SoundManager.Instance.PlayFx(FxType.CorrectMaker);
+        }
+
         // 1. Thêm spotID vào danh sách đã tìm
         foundSpotIDs.Add(spotID);
 
@@ -105,5 +111,21 @@ public class ItemManager : MonoBehaviour
         {
             gameManager.Instance.GotoStore();
         }
+    }
+
+    /// <summary>
+    /// Lấy vị trí của một điểm chưa được tìm thấy (để hiện Hand Hint).
+    /// </summary>
+    public Transform GetUnfoundSpotTransform()
+    {
+        // Duyệt qua tất cả các spot, nếu spot nào chưa có trong HashSet thì trả về
+        foreach (var spot in allSpots)
+        {
+            if (spot != null && !foundSpotIDs.Contains(spot.spotID))
+            {
+                return spot.transform;
+            }
+        }
+        return null; // Đã tìm hết
     }
 }

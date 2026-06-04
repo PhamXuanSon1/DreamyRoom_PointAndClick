@@ -3,14 +3,20 @@ using System;
 [Serializable]
 public class FxAudio
 {
-	public SoundData ClickBox;
+	public SoundData correctMaker;
+
+	public SoundData wrongMaker;
 
 	public SoundData GetSoundData(FxType type)
 	{
-		if (type == FxType.ClickBox)
+		switch (type)
 		{
-			return ClickBox;
+		case FxType.CorrectMaker:
+			return correctMaker;
+		case FxType.WrongMaker:
+			return wrongMaker;
+		default:
+			return null;
 		}
-		return null;
 	}
 }

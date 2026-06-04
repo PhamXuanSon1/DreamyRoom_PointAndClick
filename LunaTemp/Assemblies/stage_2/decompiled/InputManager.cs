@@ -1,4 +1,3 @@
-using System.Collections.Generic;
 using UnityEngine;
 
 public class InputManager : MonoBehaviour
@@ -10,17 +9,9 @@ public class InputManager : MonoBehaviour
 	[Tooltip("Reference tới ItemManager để xử lý khi tap đúng spot.")]
 	public ItemManager itemManager;
 
-	[Header("Fail Marker Pool")]
-	[Tooltip("Prefab dấu X đỏ — phải có component ItemGraphic.")]
-	public GameObject failMarkerPrefab;
-
-	[Tooltip("Số lượng FailMarker tạo sẵn trong pool.")]
-	public int poolSize = 5;
-
+	[Header("Fail Marker")]
 	[Tooltip("Khoảng cách Z spawn dấu X so với Camera.")]
 	public float failMarkerZOffset = 5f;
-
-	private List<GameObject> failMarkerPool = new List<GameObject>();
 
 	private void Start()
 	{
@@ -28,25 +19,6 @@ public class InputManager : MonoBehaviour
 		{
 			mainCamera = Camera.main;
 		}
-	}
-
-	private GameObject GetFailMarkerFromPool()
-	{
-		for (int i = 0; i < failMarkerPool.Count; i++)
-		{
-			if (!failMarkerPool[i].activeInHierarchy)
-			{
-				return failMarkerPool[i];
-			}
-		}
-		if (failMarkerPrefab != null)
-		{
-			GameObject obj = Object.Instantiate(failMarkerPrefab, base.transform);
-			obj.SetActive(false);
-			failMarkerPool.Add(obj);
-			return obj;
-		}
-		return null;
 	}
 
 	private void Update()
@@ -78,12 +50,11 @@ public class InputManager : MonoBehaviour
 
 	private void SpawnFailMarker(Vector3 screenPosition)
 	{
-		GameObject marker = GetFailMarkerFromPool();
-		if (!(marker == null))
+		if (Ply_SoundManager.Instance != null)
 		{
-			Vector3 worldPos = mainCamera.ScreenToWorldPoint(new Vector3(screenPosition.x, screenPosition.y, failMarkerZOffset));
-			marker.transform.position = worldPos;
-			marker.SetActive(true);
+			Ply_SoundManager.Instance.PlayFx(FxType.WrongMaker);
 		}
+		Vector3 worldPos = mainCamera.ScreenToWorldPoint(new Vector3(screenPosition.x, screenPosition.y, failMarkerZOffset));
+		Ply_Singleton<Ply_Pool>.Ins.Spawn<FailMaker>(PoolType.FailMaker, worldPos, Quaternion.identity);
 	}
 }

@@ -7,7 +7,8 @@ using UnityEditor;
 
 public enum FxType
 {
-    ClickBox = 0
+    CorrectMaker = 0,
+    WrongMaker = 1,
 }
 
 [System.Serializable]
@@ -20,13 +21,15 @@ public class SoundData
 [System.Serializable]
 public class FxAudio
 {
-    public SoundData ClickBox;
+    public SoundData correctMaker;
+    public SoundData wrongMaker;
 
     public SoundData GetSoundData(FxType type)
     {
         switch (type)
         {
-            case FxType.ClickBox: return ClickBox; 
+            case FxType.CorrectMaker: return correctMaker;
+            case FxType.WrongMaker: return wrongMaker;
         }
         return null;
     }

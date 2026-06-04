@@ -77,6 +77,12 @@ public class InputManager : MonoBehaviour
     /// </summary>
     private void SpawnFailMarker(Vector3 screenPosition)
     {
+        // Phát âm thanh sai
+        if (Ply_SoundManager.Instance != null)
+        {
+            Ply_SoundManager.Instance.PlayFx(FxType.WrongMaker);
+        }
+
         // Chuyển vị trí screen → world
         Vector3 worldPos = mainCamera.ScreenToWorldPoint(
             new Vector3(screenPosition.x, screenPosition.y, failMarkerZOffset)
