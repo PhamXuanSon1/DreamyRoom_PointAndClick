@@ -21,6 +21,7 @@ public class handHintManager : MonoBehaviour
 		{
 			handHintObj.SetActive(false);
 		}
+		timer = timeToHint;
 	}
 
 	private void Update()
