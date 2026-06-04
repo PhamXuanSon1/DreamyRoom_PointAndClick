@@ -44,6 +44,8 @@ SpriteAtlas:
     - 38483b5018f1b7e43a1c4f94bd7540e3: 21300000
     - 8532b07012dc25a429df771c4a94de6d: 21300000
     - 281f7da048f76634e9c6ee27a8ed8de4: 21300000
+    - 29c60db07c4e0414caf30540c3f7760a: 21300000
+    - 5a8e9bf07918ec840a06a918ca509dc5: 7482667652216324306
     - 3ba39001af437f94f854d091d7d6aeea: 21300000
     - ba96a011555aa73418ffd0b67db1e264: 21300000
     - 49826a4143defe04482257dea5911812: 21300000
@@ -53,6 +55,7 @@ SpriteAtlas:
     - 525b0722511cf8b41abe361cca9df29d: 21300000
     - 56bdf2429fbc3074fbce9f1d5bfcdf7e: 21300000
     - 97e6c052e0c746f4293a5d0d06172c22: 21300000
+    - aeea5d62d443c284ab5a4820a08ba6e8: 21300000
     - e839eca2ed5325646ac983a79f385f13: 21300000
     - 4aaf60538f1be444bba56d8d1d743416: 21300000
     - 0f9bb7e3a17381f41945ce6ce39b4b0d: 21300000
@@ -109,7 +112,6 @@ SpriteAtlas:
     - 5aa95d5e13a26424fa1bb83cfea7faba: 21300000
     - f661777eceec2d64eba8930bdfa9925f: 21300000
     - b1c8bb7ecba10504da16ab7f5d0c8436: 21300000
-    - 5644fcbefae808e488e5d429c1af64d4: 21300000
     - d47bb2ee45ab45e40b087b422b192fa4: 21300000
     - 865f2eee52511b242bebeeca45b16d08: 21300000
     - cf56500f72c12aa4f96b67a8b77e8ebe: 21300000
@@ -127,6 +129,8 @@ SpriteAtlas:
   - {fileID: 21300000, guid: 38483b5018f1b7e43a1c4f94bd7540e3, type: 3}
   - {fileID: 21300000, guid: 8532b07012dc25a429df771c4a94de6d, type: 3}
   - {fileID: 21300000, guid: 281f7da048f76634e9c6ee27a8ed8de4, type: 3}
+  - {fileID: 21300000, guid: 29c60db07c4e0414caf30540c3f7760a, type: 3}
+  - {fileID: 7482667652216324306, guid: 5a8e9bf07918ec840a06a918ca509dc5, type: 3}
   - {fileID: 21300000, guid: 3ba39001af437f94f854d091d7d6aeea, type: 3}
   - {fileID: 21300000, guid: ba96a011555aa73418ffd0b67db1e264, type: 3}
   - {fileID: 21300000, guid: 49826a4143defe04482257dea5911812, type: 3}
@@ -136,6 +140,7 @@ SpriteAtlas:
   - {fileID: 21300000, guid: 525b0722511cf8b41abe361cca9df29d, type: 3}
   - {fileID: 21300000, guid: 56bdf2429fbc3074fbce9f1d5bfcdf7e, type: 3}
   - {fileID: 21300000, guid: 97e6c052e0c746f4293a5d0d06172c22, type: 3}
+  - {fileID: 21300000, guid: aeea5d62d443c284ab5a4820a08ba6e8, type: 3}
   - {fileID: 21300000, guid: e839eca2ed5325646ac983a79f385f13, type: 3}
   - {fileID: 21300000, guid: 4aaf60538f1be444bba56d8d1d743416, type: 3}
   - {fileID: 21300000, guid: 0f9bb7e3a17381f41945ce6ce39b4b0d, type: 3}
@@ -192,7 +197,6 @@ SpriteAtlas:
   - {fileID: 21300000, guid: 5aa95d5e13a26424fa1bb83cfea7faba, type: 3}
   - {fileID: 21300000, guid: f661777eceec2d64eba8930bdfa9925f, type: 3}
   - {fileID: 21300000, guid: b1c8bb7ecba10504da16ab7f5d0c8436, type: 3}
-  - {fileID: 21300000, guid: 5644fcbefae808e488e5d429c1af64d4, type: 3}
   - {fileID: 21300000, guid: d47bb2ee45ab45e40b087b422b192fa4, type: 3}
   - {fileID: 21300000, guid: 865f2eee52511b242bebeeca45b16d08, type: 3}
   - {fileID: 21300000, guid: cf56500f72c12aa4f96b67a8b77e8ebe, type: 3}
@@ -209,6 +213,8 @@ SpriteAtlas:
   - den
   - tham-welcome
   - box-to-open
+  - trueMaker
+  - Square
   - tranh-b1
   - tra
   - losuoi
@@ -218,6 +224,7 @@ SpriteAtlas:
   - dep-la-cay 1
   - dep-do
   - cay-noel-trangtri4
+  - Vien
   - bg-9parth
   - goi-cam
   - gia-de-giay
@@ -274,7 +281,6 @@ SpriteAtlas:
   - kem2
   - lich
   - ghe-nho-1
-  - YellowCircleTrueMaker
   - tham-ban
   - tat-lacay
   - dep-cam 1

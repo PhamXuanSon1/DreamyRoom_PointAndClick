@@ -2,7 +2,7 @@
     "version": "7.0.0",
     "projectId": "7846e0c7f52f4e24980153ffda0343e2",
     "applicationID": 0,
-    "creativeName": "",
+    "creativeName": "PLY_DreamRoom_LV21",
     "pgServer": "EU",
     "window": {
         "‐⁏": true
@@ -9155,6 +9155,14 @@
             {
                 "name": "Spine.Unity.ISkeletonComponent",
                 "excluded": false
+            },
+            {
+                "name": "pc.Debugger.Components.EditorCamera",
+                "excluded": true
+            },
+            {
+                "name": "pc.Debugger.Components.EditorGUI",
+                "excluded": true
             }
         ],
         "unusedMethods": [

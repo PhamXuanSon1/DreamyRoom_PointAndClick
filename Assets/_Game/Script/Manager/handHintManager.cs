@@ -20,11 +20,14 @@ public class handHintManager : MonoBehaviour
 
     private void Start()
     {
-        // Mặc định ẩn hand hint khi mới vào game
+        // Tắt đi trước để hàm ShowHint (ở khung hình Update đầu tiên) có thể tự động gán lại vị trí mới
         if (handHintObj != null)
         {
             handHintObj.SetActive(false);
         }
+
+        // Đặt timer bằng luôn timeToHint để nó kích hoạt hiện Hand Hint ngay lập tức lúc mới vào
+        timer = timeToHint;
     }
 
     private void Update()

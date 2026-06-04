@@ -38,6 +38,47 @@ public class ItemManagerEditor : Editor
 
             Debug.Log($"[Auto-Tool] Đã tìm thấy và gán thành công {validSpots.Count} ItemController vào ItemManager!");
         }
+
+        GUILayout.Space(10);
+
+        // Nút thứ 2: Tự động gán ID
+        if (GUILayout.Button("Tự Động Gán ID Dựa Theo Tên Item", GUILayout.Height(35)))
+        {
+            if (manager.allSpots == null || manager.allSpots.Length == 0)
+            {
+                Debug.LogWarning("[Auto-Tool] Danh sách All Spots đang trống. Vui lòng bấm 'Tìm Tất Cả ItemController' trước!");
+                return;
+            }
+
+            System.Collections.Generic.Dictionary<string, int> nameToIdMap = new System.Collections.Generic.Dictionary<string, int>();
+            int currentId = 0;
+            int countUpdated = 0;
+
+            foreach (var spot in manager.allSpots)
+            {
+                if (spot == null) continue;
+
+                // Lọc tên: Bỏ qua "(1)", "(2)", "_Left", "_Right" để các object giống nhau có chung 1 chuỗi tên gốc
+                string cleanName = spot.gameObject.name;
+                cleanName = System.Text.RegularExpressions.Regex.Replace(cleanName, @"\s*\(\d+\)$", "");
+                cleanName = cleanName.Replace("_Left", "").Replace("_Right", "").Trim();
+
+                // Nếu tên này chưa có ID, thì cấp ID mới
+                if (!nameToIdMap.ContainsKey(cleanName))
+                {
+                    nameToIdMap[cleanName] = currentId;
+                    currentId++;
+                }
+
+                // Gán ID cho spot và lưu lại
+                Undo.RecordObject(spot, "Auto Assign Spot ID");
+                spot.spotID = nameToIdMap[cleanName];
+                EditorUtility.SetDirty(spot);
+                countUpdated++;
+            }
+
+            Debug.Log($"[Auto-Tool] Đã tạo thành {currentId} nhóm ID khác nhau! (Cập nhật thành công {countUpdated} spot).");
+        }
     }
 }
 #endif
