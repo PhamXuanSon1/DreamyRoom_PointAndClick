@@ -1,0 +1,12 @@
+skeletons.png
+size:112,56
+filter:Linear,Linear
+pma:true
+scale:0.8
+fire/fire_1
+bounds:0,0,54,68
+rotate:90
+fire/fire_2
+bounds:68,5,27,49
+fire/fire_3
+bounds:95,27,16,27
