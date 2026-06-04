@@ -9,6 +9,13 @@ public class InputManager : MonoBehaviour
 	[Tooltip("Reference tới ItemManager để xử lý khi tap đúng spot.")]
 	public ItemManager itemManager;
 
+	[Header("Layer Settings")]
+	[Tooltip("Layer chứa các điểm khác biệt (Ví dụ: chọn Layer 'Item').")]
+	public LayerMask itemLayer;
+
+	[Tooltip("Layer nền của bức tranh, để nhận diện click sai (Ví dụ: chọn Layer 'Background').")]
+	public LayerMask backgroundLayer;
+
 	[Header("Fail Marker")]
 	[Tooltip("Khoảng cách Z spawn dấu X so với Camera.")]
 	public float failMarkerZOffset = 5f;
@@ -32,19 +39,40 @@ public class InputManager : MonoBehaviour
 	private void HandleTap(Vector3 screenPosition)
 	{
 		Ray ray = mainCamera.ScreenPointToRay(screenPosition);
-		if (!Physics.Raycast(ray, out var hit))
+		LayerMask combinedMask = (int)itemLayer | (int)backgroundLayer;
+		RaycastHit[] hits = Physics.RaycastAll(ray, float.PositiveInfinity, combinedMask);
+		if (hits.Length == 0)
 		{
-			SpawnFailMarker(screenPosition);
 			return;
 		}
-		ItemController spot = hit.collider.GetComponent<ItemController>();
-		if (spot == null)
+		RaycastHit[] array = hits;
+		for (int i = 0; i < array.Length; i++)
 		{
-			SpawnFailMarker(screenPosition);
+			RaycastHit hit = array[i];
+			int hitLayer = hit.collider.gameObject.layer;
+			if ((itemLayer.value & (1 << hitLayer)) <= 0)
+			{
+				continue;
+			}
+			ItemController spot = hit.collider.GetComponent<ItemController>();
+			if (spot != null)
+			{
+				if (itemManager != null)
+				{
+					itemManager.TryFoundSpot(spot.spotID);
+				}
+				return;
+			}
 		}
-		else if (itemManager != null)
+		RaycastHit[] array2 = hits;
+		foreach (RaycastHit hit2 in array2)
 		{
-			itemManager.TryFoundSpot(spot.spotID);
+			int hitLayer2 = hit2.collider.gameObject.layer;
+			if ((backgroundLayer.value & (1 << hitLayer2)) > 0)
+			{
+				SpawnFailMarker(screenPosition);
+				break;
+			}
 		}
 	}
 

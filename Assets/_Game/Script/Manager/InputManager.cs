@@ -14,6 +14,13 @@ public class InputManager : MonoBehaviour
     [Tooltip("Reference tới ItemManager để xử lý khi tap đúng spot.")]
     public ItemManager itemManager;
 
+    [Header("Layer Settings")]
+    [Tooltip("Layer chứa các điểm khác biệt (Ví dụ: chọn Layer 'Item').")]
+    public LayerMask itemLayer;
+
+    [Tooltip("Layer nền của bức tranh, để nhận diện click sai (Ví dụ: chọn Layer 'Background').")]
+    public LayerMask backgroundLayer;
+
     [Header("Fail Marker")]
     [Tooltip("Khoảng cách Z spawn dấu X so với Camera.")]
     public float failMarkerZOffset = 5f;
@@ -46,29 +53,51 @@ public class InputManager : MonoBehaviour
     {
         // Bước 1 — Bắn Raycast 3D từ Camera
         Ray ray = mainCamera.ScreenPointToRay(screenPosition);
-        RaycastHit hit;
 
-        if (!Physics.Raycast(ray, out hit))
+        // Gom cả 2 layer lại để bắn Raycast 1 lần
+        LayerMask combinedMask = itemLayer | backgroundLayer;
+
+        // Dùng RaycastAll để xuyên qua mọi thứ (giải quyết lỗi bị layer Background cản)
+        RaycastHit[] hits = Physics.RaycastAll(ray, Mathf.Infinity, combinedMask);
+
+        if (hits.Length == 0)
         {
-            // Không trúng gì → spawn dấu X đỏ từ pool
-            SpawnFailMarker(screenPosition);
+            // Bấm hẳn ra ngoài (không trúng Item cũng không trúng Background) → Bỏ qua
             return;
         }
 
-        // Bước 2 — Trúng BoxCollider → kiểm tra có ItemController không
-        ItemController spot = hit.collider.GetComponent<ItemController>();
-
-        if (spot == null)
+        // Ưu tiên 1: Kiểm tra xem trong các vật bị xuyên qua, có cái nào là Item không?
+        foreach (RaycastHit hit in hits)
         {
-            // Collider bình thường → spawn dấu X đỏ từ pool
-            SpawnFailMarker(screenPosition);
-            return;
+            int hitLayer = hit.collider.gameObject.layer;
+
+            // Nếu trúng vào Layer Item
+            if ((itemLayer.value & (1 << hitLayer)) > 0)
+            {
+                ItemController spot = hit.collider.GetComponent<ItemController>();
+                if (spot != null)
+                {
+                    // Đúng điểm khác biệt
+                    if (itemManager != null)
+                    {
+                        itemManager.TryFoundSpot(spot.spotID);
+                    }
+                    return; // Đã xử lý trúng Item thì thoát luôn
+                }
+            }
         }
 
-        // Bước 3 — Có ItemController → giao cho ItemManager xử lý
-        if (itemManager != null)
+        // Ưu tiên 2: Nếu tia Raycast xuyên qua nhiều vật nhưng KHÔNG có Item nào hợp lệ
+        // Thì kiểm tra xem có trúng nền tranh (Background) không để báo lỗi
+        foreach (RaycastHit hit in hits)
         {
-            itemManager.TryFoundSpot(spot.spotID);
+            int hitLayer = hit.collider.gameObject.layer;
+            if ((backgroundLayer.value & (1 << hitLayer)) > 0)
+            {
+                // Bấm trượt vào nền tranh → báo sai
+                SpawnFailMarker(screenPosition);
+                return;
+            }
         }
     }
 

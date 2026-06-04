@@ -3533,7 +3533,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0.379, y: -0.278, z: 0}
-  m_LocalScale: {x: 1.77, y: 1.77, z: 1.77}
+  m_LocalScale: {x: 2.5, y: 2.5, z: 2.5}
   m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 1147652445}
@@ -3637,7 +3637,7 @@ GameObject:
   - component: {fileID: 553089185}
   - component: {fileID: 553089188}
   - component: {fileID: 553089187}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Chair1Place
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3762,7 +3762,7 @@ GameObject:
   - component: {fileID: 576248927}
   - component: {fileID: 576248928}
   - component: {fileID: 576248929}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Picture1Place
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4626,7 +4626,7 @@ GameObject:
   - component: {fileID: 692408390}
   - component: {fileID: 692408391}
   - component: {fileID: 692408392}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: CandlesPlace
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5086,7 +5086,7 @@ GameObject:
   - component: {fileID: 721255134}
   - component: {fileID: 721255136}
   - component: {fileID: 721255135}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: FlowerPlace
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -7689,7 +7689,7 @@ GameObject:
   - component: {fileID: 998516304}
   - component: {fileID: 998516306}
   - component: {fileID: 998516305}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: FlowerPlace
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -9073,7 +9073,7 @@ GameObject:
   - component: {fileID: 1190627794}
   - component: {fileID: 1190627796}
   - component: {fileID: 1190627795}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: HeaterDecor1Place
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -16679,7 +16679,7 @@ GameObject:
   - component: {fileID: 1491523994}
   - component: {fileID: 1491523996}
   - component: {fileID: 1491523995}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Chair1Place
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -17946,7 +17946,7 @@ GameObject:
   - component: {fileID: 1636538531}
   - component: {fileID: 1636538532}
   - component: {fileID: 1636538533}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Picture1Place
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -18935,7 +18935,7 @@ GameObject:
   - component: {fileID: 1742392419}
   - component: {fileID: 1742392420}
   - component: {fileID: 1742392421}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: CandlesPlace
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -19394,6 +19394,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   mainCamera: {fileID: 756956735}
   itemManager: {fileID: 816995998}
+  itemLayer:
+    serializedVersion: 2
+    m_Bits: 64
+  backgroundLayer:
+    serializedVersion: 2
+    m_Bits: 128
   failMarkerZOffset: 5
 --- !u!1 &1789718407
 GameObject:
@@ -21238,7 +21244,7 @@ GameObject:
   - component: {fileID: 1912027326}
   - component: {fileID: 1912027328}
   - component: {fileID: 1912027327}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: HeaterDecor1Place
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -21427,7 +21433,8 @@ GameObject:
   m_Component:
   - component: {fileID: 1922860559}
   - component: {fileID: 1922860560}
-  m_Layer: 0
+  - component: {fileID: 1922860561}
+  m_Layer: 7
   m_Name: Vien
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -21504,6 +21511,27 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!65 &1922860561
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1922860558}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 2.56, y: 2.5599997, z: 0.2}
+  m_Center: {x: 0.0000000037252903, y: 0, z: 0}
 --- !u!1 &1931642685
 GameObject:
   m_ObjectHideFlags: 0
@@ -23492,7 +23520,8 @@ GameObject:
   m_Component:
   - component: {fileID: 2108645105}
   - component: {fileID: 2108645106}
-  m_Layer: 0
+  - component: {fileID: 2108645107}
+  m_Layer: 7
   m_Name: Vien (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -23569,6 +23598,27 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!65 &2108645107
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2108645104}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 2.56, y: 2.5599997, z: 0.2}
+  m_Center: {x: 0.0000000037252903, y: 0, z: 0}
 --- !u!1 &2126428680
 GameObject:
   m_ObjectHideFlags: 0
